@@ -17,9 +17,10 @@ export default {
         loop: true,
         slidesPerView: 1,
         grabCursor: true,
-        // autoplay: {
-        //   delay: 3000
-        // },
+        centeredSlides: true,
+        autoplay: {
+          delay: 3000
+        },
         pagination: {
           el: '.swiper-pagination',
           clickable: true

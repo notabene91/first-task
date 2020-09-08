@@ -21,7 +21,7 @@ export default {
 
 <style  scoped>
 .header {
-  width: 1920px;
+  max-width: 100%;
   height: 112px;
   display: flex;
   justify-content: space-between;
