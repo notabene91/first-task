@@ -44,7 +44,9 @@ export default {
   font-size: 20px;
   line-height: 24px;
 }
-
+.navigation__link:hover {
+  color: #83CD26;
+}
 .navigation__link_active {
   color: #83CD26;
 }
