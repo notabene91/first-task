@@ -1,13 +1,11 @@
 <template>
-  <div class="navigation">
-    <ul class="navigation__list">
-      <li v-for="item in navigation" :key="item.id" class="navigation__item">
-        <nuxt-link class="link navigation__link " to="/">
-          {{ item.page_name }}
-        </nuxt-link>
-      </li>
-    </ul>
-  </div>
+  <ul class="navigation__list">
+    <li v-for="item in navigation" :key="item.id" class="navigation__item">
+      <nuxt-link class="link navigation__link " to="/">
+        {{ item.page_name }}
+      </nuxt-link>
+    </li>
+  </ul>
 </template>
 
 <script>
@@ -25,30 +23,19 @@ export default {
 
 <style scoped>
 .navigation__list {
-  display: flex;
-  justify-content: flex-start;
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
-
-.navigation__item {
+.header__navigation .navigation__item {
   margin-right: 82px;
+}
+.footer__navigation .navigation__item {
+  margin-right: 162px;
+  margin-bottom: 24px;
 }
 .navigation__item:last-of-type {
   margin-right: 0;
-}
-
-.navigation__link {
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 24px;
-}
-.navigation__link:hover {
-  color: #83CD26;
-}
-.navigation__link_active {
-  color: #83CD26;
 }
 
 @media screen and (max-width: 1750px) {

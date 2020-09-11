@@ -1,8 +1,8 @@
 <template>
   <div class="header">
-    <img src="../static/logo.svg" alt="Логотип." class="header__logo">
-    <nav class="header__navigation">
-      <navigation />
+    <img :src="logo" alt="Логотип." class="logo header__logo">
+    <nav>
+      <navigation class="header__navigation" />
     </nav>
     <info class="header__info" />
   </div>
@@ -15,17 +15,42 @@ export default {
   components: {
     navigation: Navigation,
     info: Info
+  },
+  computed: {
+    logo () {
+      return this.$store.getters['header/getLogo']
+    }
+  },
+  beforeMount () {
+    this.$store.dispatch('header/fetchSettings')
   }
 }
 </script>
 
 <style  scoped>
-.header {
-  max-width: 100%;
-  height: 112px;
-  display: flex;
-  justify-content: space-between;
-  align-items:center;
-  padding: 0 85px;
-}
+  .header {
+    width: 100%;
+    min-height: 112px;
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+    padding: 0 85px;
+  }
+  .header__navigation {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    width: 616px;
+  }
+  .header__logo {
+    margin-right: 102px;
+  }
+  @media screen and (max-width: 1570px) {
+    .header{
+      padding: 0 40px;
+    }
+  }
 </style>

@@ -1,20 +1,38 @@
 <template>
   <div class="info">
+    <img src="../static/subtract.svg" class="info__icon" alt="Выбрать город." @click="toggleCityPopup">
+    <img src="../static/profile.svg" class="info__icon" alt="Войти в профиль." @click="toggleProfilePopup">
     <nuxt-link class="link info__link" to="/">
-      <img src="../static/subtract.svg" alt="">
-    </nuxt-link>
-    <nuxt-link class="link info__link" to="/">
-      <img src="../static/profile.svg" alt="">
-    </nuxt-link>
-    <nuxt-link class="link info__link" to="/">
-      <span class="info__price">640 ₽</span>
+      <span class="info__price">{{ cart | zero }} ₽</span>
     </nuxt-link>
   </div>
 </template>
 
 <script>
 export default {
-
+  filters: {
+    zero (value) {
+      if (value === '') {
+        return '0 '
+      }
+    }
+  },
+  computed: {
+    cart () {
+      return this.$store.getters['header/getCart']
+    }
+  },
+  beforeMount () {
+    this.$store.dispatch('header/fetchCart')
+  },
+  methods: {
+    toggleCityPopup () {
+      this.$store.commit('header/toggleCityPopup')
+    },
+    toggleProfilePopup () {
+      this.$store.commit('header/toggleProfilePopup')
+    }
+  }
 }
 </script>
 
@@ -24,11 +42,12 @@ export default {
     justify-content: space-between;
     align-items: center;
   }
-  .info__link {
+  .info__icon {
     margin-right: 40px;
+    cursor: pointer;
   }
 
-  .info__link:last-of-type {
+  .info__icon:last-of-type {
     margin-right: 0;
   }
 
@@ -38,7 +57,7 @@ export default {
     line-height: 24px;
     position: relative;
     color:#83CD26;
-    margin-left: 34px;
+    margin-left: 74px;
   }
   .info__price::before {
     content: '';
@@ -51,7 +70,7 @@ export default {
     background-position: center;
     width: 24px;
     height: 24px;
-    transform: translate(-180%,-5%);
+    transform: translate(-180%,4%);
   }
 
 @media screen and (max-width: 1750px) {

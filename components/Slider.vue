@@ -49,7 +49,9 @@ export default {
   }
   .slider__image {
     height: 100%;
+    width: 100%;
     object-fit: cover;
+    object-position: left;
   }
   .swiper-pagination {
     bottom: 24px;
@@ -64,5 +66,17 @@ export default {
   }
   .swiper-pagination-bullet-active {
     background-color: #83CD26;;
+  }
+  .swiper-pagination-bullet:focus {
+    outline: none;
+    border: 1px solid coral;
+  }
+  @media screen and (max-width: 1550px) {
+    .swiper-slide {
+      height: 100%;
+    }
+    .slider__image {
+      object-fit: contain;
+    }
   }
 </style>

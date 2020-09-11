@@ -3,7 +3,15 @@
     <Nuxt />
   </div>
 </template>
-
+<script>
+export default {
+  computed: {
+    settings () {
+      return this.$store.getters['footer/getSettings']
+    }
+  }
+}
+</script>
 <style>
 html {
   font-family:
@@ -26,10 +34,4 @@ html {
   box-sizing: border-box;
   margin: 0;
 }
-
-.link {
-  color: #4E5460;
-  text-decoration: none;
-}
-
 </style>

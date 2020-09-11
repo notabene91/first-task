@@ -19,7 +19,6 @@ export default {
     return {
       swiperOptions: {
         slidesPerView: 14,
-        grabCursor: true,
         navigation: {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev'
@@ -59,8 +58,14 @@ export default {
   }
   .slider__image {
     object-fit: contain;
-    width: 100%;
+    width: 88px;
     height: 88px;
+    margin: 0 auto;
+    transition: transform 0.1s linear;
+  }
+  .slider__image:hover {
+    transform: scale(1.1);
+    transition: transform 0.1s linear;
   }
   .swiper-button-prev, .swiper-button-next{
     width: 36px;
