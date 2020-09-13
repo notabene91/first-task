@@ -1,4 +1,5 @@
-import axios from 'axios'
+
+import LOAD_CARD from '../api/loadCard'
 
 export const state = () => ({
   cardInfo: []
@@ -11,8 +12,8 @@ export const mutations = {
 }
 
 export const actions = {
-  fetchCardInfo (state, id) {
-    return axios.get(`https://vsem-edu-oblako.ru/singlemerchant/api/loadItemByCategory/?merchant_keys=929990d3b27944af404a5eb3ee1ec4f6&lang=ru&device_id=XXX_555_&device_plarform=site&json=1&cat_id=${id}`)
+  fetchCardInfo (state) {
+    return LOAD_CARD.get()
       .then((res) => {
         return state.commit('setState', {
           name: 'cardInfo',

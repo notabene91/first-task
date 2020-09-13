@@ -5,7 +5,17 @@
       <h2 class="products__title">
         {{ menu.category_name }}
       </h2>
-      <card :id="menu.cat_id" />
+      <div class="products__container">
+        <card
+          v-for="card in cards"
+          :key="card.item_id"
+          :photo="card.photo"
+          :name="card.item_name"
+          :description="card.item_description"
+          :price="card.prices[0].formatted_price"
+          :addon="card.addon_item"
+        />
+      </div>
       <button class="button products__button">
         Перейти в каталог
       </button>
@@ -18,10 +28,14 @@ export default {
   computed: {
     menus () {
       return this.$store.getters['menu/getMenu']
+    },
+    cards () {
+      return this.$store.getters['card/getCardInfo']
     }
   },
   beforeMount () {
     this.$store.dispatch('menu/fetchMenu')
+    this.$store.dispatch('card/fetchCardInfo')
   }
 }
 </script>
@@ -32,6 +46,14 @@ export default {
     flex-direction: column;
     align-items: center;
     padding: 66px 85px 18px;
+  }
+  .products__container {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(auto-fill, 326px);
+    grid-gap: 30px;
+    margin-bottom: 30px;
+    justify-content: center;
   }
   .products__title {
     font-weight: 500;
@@ -81,15 +103,8 @@ export default {
     background: #4E5460;
     color: #fff;
   }
-  @media screen and (max-width: 1750px) {
-    .products__container {
-      grid-template-columns: repeat(4, 1fr);
-    }
-  }
+
    @media screen and (max-width: 1570px) {
-    .products__container {
-      grid-template-columns: repeat(3, 1fr);
-    }
     .products {
       padding: 42px 40px 18px;
     }

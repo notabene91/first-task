@@ -1,22 +1,20 @@
 <template>
-  <div class="container">
-    <div v-for="card in cardInfo" :key="card.item_id" class="card">
-      <img class="card__image" :src="card.photo" alt="">
-      <div class="card__container">
-        <h3 class="card__title">
-          {{ card.item_name }}
-        </h3>
-        <p class="card__description">
-          {{ card.item_description }}
-        </p>
-        <p class="card__price">
-          {{ card.prices[0].formatted_price }}
-        </p>
-      </div>
-      <button class="button card__button">
-        {{ card.addon_item ? 'Выбрать' : 'Добавить в корзину' }}
-      </button>
+  <div class="card">
+    <img class="card__image" :src="photo" alt="">
+    <div class="card__container">
+      <h3 class="card__title">
+        {{ name }}
+      </h3>
+      <p class="card__description">
+        {{ description }}
+      </p>
+      <p class="card__price">
+        {{ price }}
+      </p>
     </div>
+    <button class="button card__button">
+      {{ addon ? 'Выбрать' : 'Добавить в корзину' }}
+    </button>
   </div>
 </template>
 
@@ -24,28 +22,11 @@
 
 export default {
   // eslint-disable-next-line vue/require-prop-types
-  props: ['id'],
-  computed: {
-    cardInfo () {
-      return this.$store.getters['card/getCardInfo']
-    },
-    cat_id () {
-      return this.id
-    }
-  },
-  beforeMount () {
-    this.$store.dispatch('card/fetchCardInfo', this.cat_id)
-  }
+  props: ['photo', 'name', 'description', 'price', 'addon']
 }
 </script>
 
 <style scoped>
-  .container {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-gap: 30px;
-    margin-bottom: 30px;
-  }
   .card {
     box-sizing: border-box;
     display: flex;
@@ -57,9 +38,10 @@ export default {
     box-shadow: 0px 4px 32px rgba(78, 84, 96, 0.15);
   }
   .card__image {
-    margin: 0 auto 36px;
-    width: 200px;
-    height: 200px;
+    margin: 0 auto 8px;
+    width: 280px;
+    height: 280px;
+    object-fit: cover;
     cursor: pointer;
   }
   .card__container {
@@ -70,12 +52,18 @@ export default {
     padding: 0 24px 4px;
   }
   .card__title {
+    min-height: 42px;
     font-weight: 500;
-    font-size: 18px;
+    font-size: 20px;
     line-height: 21px;
     letter-spacing: 0.05em;
     color: #181A1D;
     margin-bottom: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
   }
   .card__description {
     min-height: 55px;
@@ -87,18 +75,19 @@ export default {
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 4;
     margin-bottom: 10px;
   }
   .card__price {
     font-weight: 500;
-    font-size: 18px;
+    font-size: 20px;
     line-height: 24px;
     letter-spacing: 0.05em;
     color: #181A1D;
+    margin-bottom: 4  px;
   }
   .card__button {
-    min-height: 64px;
+    min-height: 72px;
     background-color: #C7CACF;
     font-weight: 500;
     font-size: 16px;
@@ -118,6 +107,11 @@ export default {
   .card__button:active {
     background-color: #68B00C;
     color: #fff;
+  }
+  @media screen and (max-width: 1550px) {
+    .card__price {
+      margin-bottom: 10px;
+    }
   }
    @media screen and (max-width: 1220px) {
     .card__image {

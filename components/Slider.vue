@@ -54,7 +54,7 @@ export default {
     object-position: left;
   }
   .swiper-pagination {
-    bottom: 24px;
+    bottom: 20px;
   }
   .swiper-pagination-bullet {
     background-color: white;

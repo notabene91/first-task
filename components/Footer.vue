@@ -71,6 +71,7 @@ export default {
 
 <style scoped>
 .footer {
+  margin-top: 80px;
   width: 100%;
   min-height: 112px;
   padding: 66px 85px 24px;
