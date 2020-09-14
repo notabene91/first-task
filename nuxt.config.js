@@ -15,14 +15,14 @@ export default {
   ** See https://nuxtjs.org/api/configuration-head
   */
   head: {
-    title: 'Panuki',
+    htmlAttrs: {
+      lang: 'ru'
+    },
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'stylesheet', href: 'fonts/fonts.css' }
     ]
   },
@@ -35,7 +35,11 @@ export default {
   ** Plugins to load before mounting the App
   ** https://nuxtjs.org/guide/plugins
   */
-  plugins: [{ src: '~/plugins/swiper.js' }],
+  plugins: [
+    { src: '~/plugins/swiper.js' },
+    { src: '~/plugins/ym.js', mode: 'client' },
+    { src: '~plugins/ga.js', mode: 'client' }
+  ],
   /*
   ** Auto import components
   ** See https://nuxtjs.org/api/configuration-components

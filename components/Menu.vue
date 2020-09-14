@@ -15,6 +15,9 @@
 
 <script>
 export default {
+  async fetch () {
+    await this.$store.dispatch('menu/fetchMenu')
+  },
   data () {
     return {
       swiperOptions: {
@@ -30,9 +33,6 @@ export default {
     menu () {
       return this.$store.getters['menu/getMenu']
     }
-  },
-  beforeMount () {
-    this.$store.dispatch('menu/fetchMenu')
   }
 }
 </script>

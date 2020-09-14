@@ -6,15 +6,15 @@
         {{ menu.category_name }}
       </h2>
       <div class="products__container">
-        <card
-          v-for="card in cards"
+        <!-- <card
+          v-for="card in cards[2].value"
           :key="card.item_id"
           :photo="card.photo"
           :name="card.item_name"
           :description="card.item_description"
           :price="card.prices[0].formatted_price"
           :addon="card.addon_item"
-        />
+        /> -->
       </div>
       <button class="button products__button">
         Перейти в каталог
@@ -25,17 +25,19 @@
 
 <script>
 export default {
+  async fetch () {
+    await this.menus.forEach((item) => {
+      this.$store.dispatch('card/fetchCardInfo', item.cat_id)
+    })
+    await this.$store.dispatch('menu/fetchMenu')
+  },
   computed: {
     menus () {
       return this.$store.getters['menu/getMenu']
     },
     cards () {
-      return this.$store.getters['card/getCardInfo']
+      return this.$store.getters['card/getCard']
     }
-  },
-  beforeMount () {
-    this.$store.dispatch('menu/fetchMenu')
-    this.$store.dispatch('card/fetchCardInfo')
   }
 }
 </script>

@@ -5,9 +5,36 @@
 </template>
 <script>
 export default {
+  async fetch () {
+    await this.$store.dispatch('settings/fetchSettings')
+  },
   computed: {
     settings () {
-      return this.$store.getters['footer/getSettings']
+      return this.$store.getters['settings/getSettings']
+    }
+  },
+  head () {
+    return {
+      title: this.settings.seo.seo_title,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.settings.seo.seo_description
+        },
+        {
+          hid: 'keywords',
+          name: 'keywords',
+          content: this.settings.seo.seo_keywords
+        }
+      ],
+      link: [
+        {
+          rel: 'icon',
+          type: 'image/x-icon',
+          href: this.settings.favicon
+        }
+      ]
     }
   }
 }

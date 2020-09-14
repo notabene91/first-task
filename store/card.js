@@ -1,30 +1,27 @@
-
-import LOAD_CARD from '../api/loadCard'
+import axios from 'axios'
 
 export const state = () => ({
-  cardInfo: []
+  cards: []
 })
 
 export const mutations = {
-  setState (state, { name, value }) {
-    return (state[name] = value)
+  setState (state, value) {
+    return (state.cards.push(value))
   }
 }
 
 export const actions = {
-  fetchCardInfo (state) {
-    return LOAD_CARD.get()
-      .then((res) => {
-        return state.commit('setState', {
-          name: 'cardInfo',
-          value: res.data.details.data
-        })
-      })
+  async fetchCardInfo (state, id) {
+    const res = await axios.get(`https://vsem-edu-oblako.ru/singlemerchant/api/loadItemByCategory/?merchant_keys=929990d3b27944af404a5eb3ee1ec4f6&lang=ru&device_id=XXX_555_&device_plarform=site&json=1&cat_id=${id}`)
+    return state.commit('setState', {
+      name: id,
+      value: res.data.details.data
+    })
   }
 }
 
 export const getters = {
-  getCardInfo (state) {
-    return state.cardInfo
+  getCard (state) {
+    return state.cards
   }
 }

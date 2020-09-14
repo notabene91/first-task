@@ -11,6 +11,9 @@
 
 <script>
 export default {
+  async fetch () {
+    await this.$store.dispatch('slider/fetchSlides')
+  },
   data () {
     return {
       swiperOptions: {
@@ -32,9 +35,6 @@ export default {
     slides () {
       return this.$store.getters['slider/getSlides']
     }
-  },
-  beforeMount () {
-    this.$store.dispatch('slider/fetchSlides')
   }
 }
 </script>

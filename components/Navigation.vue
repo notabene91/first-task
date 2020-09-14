@@ -10,13 +10,13 @@
 
 <script>
 export default {
+  async fetch () {
+    await this.$store.dispatch('navigation/fetchNavItems')
+  },
   computed: {
     navigation () {
       return this.$store.getters['navigation/getNavItems']
     }
-  },
-  beforeMount () {
-    this.$store.dispatch('navigation/fetchNavItems')
   }
 }
 </script>

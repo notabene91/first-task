@@ -24,5 +24,11 @@ export const actions = {
 export const getters = {
   getSettings (state) {
     return state.settings
+  },
+  getGA (state) {
+    return state.settings.google_analytics
+  },
+  getYM (state) {
+    return state.settings.yandex_mertica
   }
 }

@@ -55,16 +55,16 @@
 
 <script>
 export default {
+  async fetch () {
+    await this.$store.dispatch('settings/fetchSettings')
+  },
   computed: {
     logo () {
       return this.$store.getters['header/getLogo']
     },
     settings () {
-      return this.$store.getters['footer/getSettings']
+      return this.$store.getters['settings/getSettings']
     }
-  },
-  beforeMount () {
-    this.$store.dispatch('footer/fetchSettings')
   }
 }
 </script>

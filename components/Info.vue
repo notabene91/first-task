@@ -17,13 +17,13 @@ export default {
       }
     }
   },
+  async fetch () {
+    await this.$store.dispatch('header/fetchCart')
+  },
   computed: {
     cart () {
       return this.$store.getters['header/getCart']
     }
-  },
-  beforeMount () {
-    this.$store.dispatch('header/fetchCart')
   },
   methods: {
     toggleCityPopup () {

@@ -16,13 +16,13 @@ export default {
     navigation: Navigation,
     info: Info
   },
+  async fetch () {
+    await this.$store.dispatch('header/fetchSettings')
+  },
   computed: {
     logo () {
       return this.$store.getters['header/getLogo']
     }
-  },
-  beforeMount () {
-    this.$store.dispatch('header/fetchSettings')
   }
 }
 </script>
