@@ -5,8 +5,8 @@ export const state = () => ({
 })
 
 export const mutations = {
-  setState (state, value) {
-    return (state.cards.push(value))
+  setState (state, { name, value }) {
+    return (state.cards[name] = value)
   }
 }
 

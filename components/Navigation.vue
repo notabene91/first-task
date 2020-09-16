@@ -28,7 +28,8 @@ export default {
   padding: 0;
 }
 .header__navigation .navigation__item {
-  margin-right: 82px;
+  display: flex;
+  align-content: flex-end;
 }
 .footer__navigation .navigation__item {
   margin-right: 162px;
@@ -43,9 +44,6 @@ export default {
     font-weight: 500;
     font-size: 18px;
     line-height: 1;
-  }
-  .navigation__item {
-    margin-right: 44px;
   }
 }
 </style>

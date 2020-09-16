@@ -7,7 +7,7 @@
       </h2>
       <div class="products__container">
         <!-- <card
-          v-for="card in cards[2].value"
+          v-for="card in cards"
           :key="card.item_id"
           :photo="card.photo"
           :name="card.item_name"
@@ -109,6 +109,11 @@ export default {
    @media screen and (max-width: 1570px) {
     .products {
       padding: 42px 40px 18px;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .products {
+      display: none;
     }
   }
 </style>

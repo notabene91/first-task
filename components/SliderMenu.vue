@@ -82,4 +82,9 @@ export default {
   .swiper-button-prev::after, .swiper-button-next:after {
     display: none;
   }
+  @media screen and (max-width: 768px) {
+    .slider {
+      display: none;
+    }
+  }
 </style>

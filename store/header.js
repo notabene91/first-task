@@ -6,7 +6,8 @@ export const state = () => ({
   logo: '',
   cart: '',
   popupCityShown: false,
-  popupProfileShown: false
+  popupProfileShown: false,
+  dropdownShown: false
 })
 
 export const mutations = {
@@ -18,6 +19,9 @@ export const mutations = {
   },
   toggleProfilePopup (state) {
     return (state.popupProfileShown = !state.popupProfileShown)
+  },
+  toggleDropdown (state) {
+    return (state.dropdownShown = !state.dropdownShown)
   }
 }
 
@@ -52,5 +56,8 @@ export const getters = {
   },
   getPopupProfile (state) {
     return state.popupProfileShown
+  },
+  getDropdown (state) {
+    return state.dropdownShown
   }
 }

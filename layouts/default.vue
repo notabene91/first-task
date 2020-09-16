@@ -61,4 +61,9 @@ html {
   box-sizing: border-box;
   margin: 0;
 }
+@media screen and (max-width: 768px) {
+  html {
+    font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+  }
+}
 </style>

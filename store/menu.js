@@ -2,12 +2,16 @@
 import LOAD_MENU from '../api/loadMenu'
 
 export const state = () => ({
-  menu: []
+  menu: [],
+  menuShown: false
 })
 
 export const mutations = {
   setState (state, { name, value }) {
     return (state[name] = value)
+  },
+  toggleMobileMenu (state) {
+    return (state.menuShown = !state.menuShown)
   }
 }
 
@@ -26,5 +30,8 @@ export const actions = {
 export const getters = {
   getMenu (state) {
     return state.menu
+  },
+  getMenuShown (state) {
+    return state.menuShown
   }
 }

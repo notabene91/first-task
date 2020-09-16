@@ -22,7 +22,6 @@
 
 <script>
 export default {
-
   methods: {
     toggleProfilePopup () {
       this.$store.commit('header/toggleProfilePopup')

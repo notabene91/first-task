@@ -1,5 +1,5 @@
 <template>
-  <div v-swiper:mySwiper="swiperOptions" class="slider">
+  <div v-if="!isDropdownShown" v-swiper:mySwiper="swiperOptions" class="slider">
     <div class="swiper-wrapper">
       <div v-for="slide in slides" :key="slide.id" class="swiper-slide">
         <img :src="slide.photo" :alt="slide.page_name" class="slider__image">
@@ -34,6 +34,9 @@ export default {
   computed: {
     slides () {
       return this.$store.getters['slider/getSlides']
+    },
+    isDropdownShown () {
+      return this.$store.getters['header/getDropdown']
     }
   }
 }
@@ -77,6 +80,15 @@ export default {
     }
     .slider__image {
       object-fit: contain;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .swiper-slide {
+      height: 340px;
+    }
+    .slider__image {
+      object-fit: cover;
+      object-position: left;
     }
   }
 </style>

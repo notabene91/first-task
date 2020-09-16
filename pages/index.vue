@@ -1,9 +1,12 @@
 <template>
   <div class="body">
     <my-header />
+    <my-dropdown v-if="isDropdownShown" />
     <div class="main">
       <slider />
-      <food />
+      <slider-menu />
+      <buttons />
+      <mobile-menu v-if="isMenuShown" />
       <products />
       <my-footer />
       <popup-profile v-if="isShownProfile" />
@@ -15,8 +18,11 @@
 
 <script>
 import Header from '../components/Header'
+import Dropdown from '../components/Dropdown'
 import Slider from '../components/Slider'
-import Menu from '../components/Menu'
+import SliderMenu from '../components/SliderMenu'
+import MobileButtons from '../components/MobileButtons'
+import MobileMenu from '../components/MobileMenu'
 import Products from '../components/Products'
 import Footer from '../components/Footer'
 import PopupProfile from '../components/PopupProfile'
@@ -26,8 +32,11 @@ export default {
   components: {
     overlay: Overlay,
     'my-header': Header,
+    'my-dropdown': Dropdown,
     slider: Slider,
-    food: Menu,
+    'slider-menu': SliderMenu,
+    buttons: MobileButtons,
+    'mobile-menu': MobileMenu,
     products: Products,
     'my-footer': Footer,
     'popup-profile': PopupProfile,
@@ -59,6 +68,12 @@ export default {
     },
     isShownCity () {
       return this.$store.getters['header/getPopupCity']
+    },
+    isDropdownShown () {
+      return this.$store.getters['header/getDropdown']
+    },
+    isMenuShown () {
+      return this.$store.getters['menu/getMenuShown']
     }
   }
 }
