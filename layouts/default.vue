@@ -1,16 +1,42 @@
 <template>
   <div>
+    <my-header />
+    <my-dropdown v-if="isDropdownShown" />
+    <popup-profile v-if="isShownProfile" />
+    <popup-city v-if="isShownCity" />
+    <overlay v-if="isShownCity || isShownProfile" />
     <Nuxt />
   </div>
 </template>
 <script>
+import Header from '../components/Header'
+import Dropdown from '../components/Dropdown'
+import PopupProfile from '../components/PopupProfile'
+import PopupCity from '../components/PopupCity'
+import Overlay from '../components/Overlay'
 export default {
+  components: {
+    'my-header': Header,
+    'my-dropdown': Dropdown,
+    overlay: Overlay,
+    'popup-profile': PopupProfile,
+    'popup-city': PopupCity
+  },
   async fetch () {
     await this.$store.dispatch('settings/fetchSettings')
   },
   computed: {
     settings () {
       return this.$store.getters['settings/getSettings']
+    },
+    isShownProfile () {
+      return this.$store.getters['header/getPopupProfile']
+    },
+    isShownCity () {
+      return this.$store.getters['header/getPopupCity']
+    },
+    isDropdownShown () {
+      return this.$store.getters['header/getDropdown']
     }
   },
   head () {

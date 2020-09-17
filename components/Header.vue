@@ -31,7 +31,9 @@
           @click="toggleCityPopup"
         >
       </label>
-      <img v-if="!isDropdownShown" :src="logo" alt="Логотип." class="logo header__logo">
+      <nuxt-link to="/">
+        <img v-if="!isDropdownShown" :src="logo" alt="Логотип." class="logo header__logo">
+      </nuxt-link>
       <nav>
         <navigation class="header__navigation" />
       </nav>

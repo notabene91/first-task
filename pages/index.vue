@@ -1,46 +1,31 @@
 <template>
   <div class="body">
-    <my-header />
-    <my-dropdown v-if="isDropdownShown" />
     <div class="main">
-      <slider />
+      <slider-banners />
       <slider-menu />
       <buttons />
       <mobile-menu v-if="isMenuShown" />
       <products />
       <my-footer />
-      <popup-profile v-if="isShownProfile" />
-      <popup-city v-if="isShownCity" />
-      <overlay v-if="isShownCity || isShownProfile" />
     </div>
   </div>
 </template>
 
 <script>
-import Header from '../components/Header'
-import Dropdown from '../components/Dropdown'
-import Slider from '../components/Slider'
+import SliderBanners from '../components/SliderBanners'
 import SliderMenu from '../components/SliderMenu'
 import MobileButtons from '../components/MobileButtons'
 import MobileMenu from '../components/MobileMenu'
 import Products from '../components/Products'
 import Footer from '../components/Footer'
-import PopupProfile from '../components/PopupProfile'
-import PopupCity from '../components/PopupCity'
-import Overlay from '../components/Overlay'
 export default {
   components: {
-    overlay: Overlay,
-    'my-header': Header,
-    'my-dropdown': Dropdown,
-    slider: Slider,
+    'slider-banners': SliderBanners,
     'slider-menu': SliderMenu,
     buttons: MobileButtons,
     'mobile-menu': MobileMenu,
     products: Products,
-    'my-footer': Footer,
-    'popup-profile': PopupProfile,
-    'popup-city': PopupCity
+    'my-footer': Footer
   },
   data () {
     return {
@@ -63,15 +48,6 @@ export default {
     }
   },
   computed: {
-    isShownProfile () {
-      return this.$store.getters['header/getPopupProfile']
-    },
-    isShownCity () {
-      return this.$store.getters['header/getPopupCity']
-    },
-    isDropdownShown () {
-      return this.$store.getters['header/getDropdown']
-    },
     isMenuShown () {
       return this.$store.getters['menu/getMenuShown']
     }

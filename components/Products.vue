@@ -16,9 +16,9 @@
           :addon="card.addon_item"
         /> -->
       </div>
-      <button class="button products__button">
+      <nuxt-link to="/catalog" class="button products__button">
         Перейти в каталог
-      </button>
+      </nuxt-link>
     </div>
   </section>
 </template>
@@ -26,9 +26,6 @@
 <script>
 export default {
   async fetch () {
-    await this.menus.forEach((item) => {
-      this.$store.dispatch('card/fetchCardInfo', item.cat_id)
-    })
     await this.$store.dispatch('menu/fetchMenu')
   },
   computed: {
@@ -67,12 +64,16 @@ export default {
   }
   .products__button {
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 320px;
     min-height: 54px;
     border: 2px solid #4E5460;
     background-color: #fff;
     box-sizing: border-box;
     border-radius: 8px;
+    text-decoration: none;
     font-weight: normal;
     font-size: 16px;
     line-height: 19px;

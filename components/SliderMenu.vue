@@ -1,7 +1,7 @@
 <template>
   <div v-swiper:mySwiper="swiperOptions" class="slider">
     <div class="swiper-wrapper">
-      <div v-for="food in menu" :key="food.id" class="swiper-slide">
+      <div v-for="food in menu" :key="food.cat_id" class="swiper-slide">
         <img :src="food.photo_url" :alt="food.name" class="slider__image">
         <p class="slider__text">
           {{ food.category_name }}
@@ -23,6 +23,8 @@ export default {
       swiperOptions: {
         slidesPerView: 14,
         spaceBetween: 20,
+        centeredSlides: true,
+        initialSlide: 3,
         navigation: {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev'
@@ -55,9 +57,6 @@ export default {
   .slider {
     width: 100%;
   }
-  .swiper-wrapper {
-    justify-content: center;
-  }
   .swiper-slide {
     display: flex;
     flex-direction: column;
@@ -88,13 +87,18 @@ export default {
     background-repeat: no-repeat;
   }
   .swiper-button-prev {
-    background-image: url(../static/prev_arrow.svg);
+    background-image: url(../static/prev_arrow_circle.svg);
   }
   .swiper-button-next {
-    background-image: url(../static/next_arrow.svg);
+    background-image: url(../static/next_arrow_circle.svg);
   }
   .swiper-button-prev::after, .swiper-button-next:after {
     display: none;
+  }
+  @media screen and (max-width: 1100px) {
+    .swiper-button-prev, .swiper-button-next {
+      display: none;
+    }
   }
   @media screen and (max-width: 768px) {
     .slider {

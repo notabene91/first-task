@@ -1,12 +1,16 @@
 import axios from 'axios'
 
 export const state = () => ({
-  cards: []
+  cards: [],
+  num: []
 })
 
 export const mutations = {
-  setState (state, { name, value }) {
-    return (state.cards[name] = value)
+  setState (state, value) {
+    return (state.cards = value)
+  },
+  setNum (state, value) {
+    return (state.num = value)
   }
 }
 
@@ -16,6 +20,11 @@ export const actions = {
     return state.commit('setState', {
       name: id,
       value: res.data.details.data
+    })
+  },
+  takeNum (state, num) {
+    return state.commit('setNum', {
+      value: num
     })
   }
 }
