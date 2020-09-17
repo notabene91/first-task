@@ -22,9 +22,23 @@ export default {
     return {
       swiperOptions: {
         slidesPerView: 14,
+        spaceBetween: 20,
         navigation: {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev'
+        },
+        breakpoints: {
+          1020: {
+            slidesPerView: 8,
+            spaceBetween: 0
+          },
+          1080: {
+            slidesPerView: 12,
+            spaceBetween: 20
+          },
+          1439: {
+            slidesPerView: 14
+          }
         }
       }
     }

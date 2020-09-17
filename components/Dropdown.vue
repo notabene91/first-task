@@ -1,6 +1,6 @@
 <template>
   <div class="dropdown">
-    <img src="../static/profile_big.svg" alt="Профиль." class="dropdown__image">
+    <img src="../static/profile_big.svg" alt="Профиль." class="dropdown__image" @click="toggleProfilePopup">
     <nav>
       <navigation class="dropdown__list" />
     </nav>
@@ -12,6 +12,11 @@ import Navigation from './Navigation'
 export default {
   components: {
     navigation: Navigation
+  },
+  methods: {
+    toggleProfilePopup () {
+      this.$store.commit('header/toggleProfilePopup')
+    }
   }
 }
 </script>

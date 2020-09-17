@@ -90,5 +90,14 @@ export default {
       object-fit: cover;
       object-position: left;
     }
+    .swiper-pagination-bullet {
+      background-color: transparent;
+      border-radius: 50%;
+      margin-right: 16px;
+      border: 2px solid #fff;
+    }
+    .swiper-pagination-bullet-active {
+      background-color: #fff;;
+    }
   }
 </style>

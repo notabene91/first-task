@@ -91,4 +91,9 @@ export default {
     .popup__link {
       color: #0d0d0e;
     }
+    @media screen and (max-width: 768px) {
+      .popup__content {
+        width: 75%;
+      }
+    }
 </style>

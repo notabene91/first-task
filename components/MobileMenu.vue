@@ -26,7 +26,7 @@ export default {
   .mobile-menu {
     display: grid;
     border-top: 1px solid #383838;
-    padding-top: 10px;
+    padding-top: 20px;
   }
   .mobile-menu__item {
     display: flex;

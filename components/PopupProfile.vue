@@ -105,6 +105,7 @@ export default {
   }
   .popup__button:focus {
     outline: none;
+    border: 0;
   }
   .popup__link {
     text-decoration: underline;
@@ -116,4 +117,26 @@ export default {
   .popup__link:last-of-type {
     margin-bottom: 0;
   }
+  @media screen and (max-width: 768px) {
+      .popup__content {
+        width: 75%;
+      }
+      .popup__input {
+        height: 42px;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        font-size: 16px;
+        line-height: 1;
+      }
+      .popup__button {
+        height: 42px;
+        border-radius: 8px;
+        font-size: 16px;
+        line-height: 1;
+      }
+      .popup__link {
+        font-size: 16px;
+        line-height: 18px;
+      }
+    }
 </style>
