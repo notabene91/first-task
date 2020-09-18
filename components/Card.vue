@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <img class="card__image" :src="photo" alt="">
+    <img class="card__image" :src="photo" alt="Фотография товара.">
     <div class="card__container">
       <h3 class="card__title">
         {{ name }}

@@ -36,4 +36,9 @@ export default {
     color: #4E5460;
     margin-bottom: 43px;
   }
+  @media screen and (max-width: 1450px) {
+    .order__title {
+      font-size: 54px;
+    }
+  }
 </style>

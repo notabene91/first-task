@@ -1,7 +1,9 @@
 <template>
-  <div class="footer">
+  <div class="footer" @click="bla()">
     <div class="footer__top">
-      <img :src="logo" alt="Логотип." class="logo footer__logo">
+      <nuxt-link class="header__link" to="/">
+        <img :src="logo" alt="Логотип." class="logo footer__logo">
+      </nuxt-link>
       <nav>
         <navigation class="footer__navigation" />
       </nav>
@@ -64,6 +66,15 @@ export default {
     },
     settings () {
       return this.$store.getters['settings/getSettings']
+    }
+  },
+  methods: {
+    startSlide () {
+      return this.menu.findIndex(el => el.category_code === this.$route.params.id)
+    },
+    bla () {
+      // eslint-disable-next-line no-console
+      console.log(this.$route)
     }
   }
 }

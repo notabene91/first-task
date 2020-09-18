@@ -1,7 +1,12 @@
 <template>
   <div v-swiper:mySwiper="swiperOptions" class="slider">
     <div class="swiper-wrapper">
-      <div v-for="food in menu" :key="food.cat_id" class="swiper-slide">
+      <div
+        v-for="food in menu"
+        :key="food.cat_id"
+        class="swiper-slide"
+        @click="goToCatalog(food.category_code, food.cat_id)"
+      >
         <p class="slider__text">
           {{ food.category_name }}
         </p>
@@ -14,6 +19,8 @@
 
 <script>
 export default {
+  // eslint-disable-next-line vue/require-prop-types
+  props: ['start'],
   async fetch () {
     await this.$store.dispatch('menu/fetchMenu')
   },
@@ -22,20 +29,10 @@ export default {
       swiperOptions: {
         slidesPerView: '3',
         centeredSlides: true,
+        initialSlide: this.start,
         navigation: {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev'
-        },
-        breakpoints: {
-          1020: {
-            spaceBetween: 20
-          },
-          1150: {
-            spaceBetween: 50
-          },
-          1440: {
-            spaceBetween: 100
-          }
         }
       }
     }
@@ -43,6 +40,11 @@ export default {
   computed: {
     menu () {
       return this.$store.getters['menu/getMenu']
+    }
+  },
+  methods: {
+    goToCatalog (id, num) {
+      this.$router.push({ path: `/catalog/${id}`, query: { num } })
     }
   }
 }
@@ -71,6 +73,7 @@ export default {
     font-size: 72px;
     line-height: 1;
     color: #4E5460;
+    padding-bottom: 0;
   }
   .swiper-button-prev, .swiper-button-next{
     position: absolute;
@@ -83,13 +86,13 @@ export default {
     outline: none;
   }
   .swiper-button-prev {
-    left: 32%;
-    top: 100%;
+    left: 31%;
+    top: 98%;
     background-image: url(../static/prev_arrow.svg);
   }
   .swiper-button-next {
-    right: 32%;
-    top: 100%;
+    right: 31%;
+    top: 98%;
     background-image: url(../static/next_arrow.svg);
   }
   .swiper-button-prev::after, .swiper-button-next:after {
@@ -97,40 +100,36 @@ export default {
   }
   @media screen and (max-width: 1800px) {
     .slider {
-      width: 45%;
+      width: 52%;
+      height: 184px;
     }
     .swiper-button-prev {
-      left: 30%;
+      left: 32%;
     }
     .swiper-button-next {
-      right: 30%;
+      right: 32%;
     }
   }
   @media screen and (max-width: 1700px) {
+    .slider {
+      width: 50%;
+    }
     .swiper-button-prev {
-      left: 28%;
+      left: 32%;
     }
     .swiper-button-next {
-      right: 28%;
+      right: 32%;
     }
   }
   @media screen and (max-width: 1550px) {
-    .swiper-button-prev {
-      left: 26%;
-    }
-    .swiper-button-next {
-      right: 26%;
+    .slider {
+      width: 50%;
     }
   }
-  @media screen and (max-width: 1439px) {
-    .swiper-button-prev {
-      left: 29%;
+  @media screen and (max-width: 1450px) {
+    .slider {
+      height: auto;
     }
-    .swiper-button-next {
-      right: 29%;
-    }
-  }
-  @media screen and (max-width: 1200px) {
     .swiper-slide {
       height: 120px;
     }
@@ -140,6 +139,8 @@ export default {
     .swiper-slide-prev, .swiper-slide-next   {
       font-size: 24px;
     }
+  }
+  @media screen and (max-width: 1400px) {
     .swiper-button-prev, .swiper-button-next{
       display: none;
     }

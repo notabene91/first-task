@@ -23,7 +23,7 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' }
     ],
     link: [
-      { rel: 'stylesheet', href: 'fonts/fonts.css' }
+      { rel: 'stylesheet', href: '../fonts/fonts.css' }
     ]
   },
   /*

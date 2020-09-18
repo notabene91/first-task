@@ -5,35 +5,31 @@
       <h2 class="products__title">
         {{ menu.category_name }}
       </h2>
-      <div class="products__container">
-        <!-- <card
-          v-for="card in cards"
-          :key="card.item_id"
-          :photo="card.photo"
-          :name="card.item_name"
-          :description="card.item_description"
-          :price="card.prices[0].formatted_price"
-          :addon="card.addon_item"
-        /> -->
-      </div>
-      <nuxt-link to="/catalog" class="button products__button">
+      <!-- <catalog /> -->
+      <button class="button products__button" @click="goToCatalog(menu.category_code, menu.cat_id)">
         Перейти в каталог
-      </nuxt-link>
+      </button>
     </div>
   </section>
 </template>
 
 <script>
+// import Catalog from '../components/Catalog'
 export default {
+  components: {
+    // catalog: Catalog
+  },
   async fetch () {
     await this.$store.dispatch('menu/fetchMenu')
   },
   computed: {
     menus () {
       return this.$store.getters['menu/getMenu']
-    },
-    cards () {
-      return this.$store.getters['card/getCard']
+    }
+  },
+  methods: {
+    goToCatalog (id, num) {
+      this.$router.push({ path: `/catalog/${id}`, query: { num } })
     }
   }
 }
@@ -65,7 +61,6 @@ export default {
     background-color: #fff;
     box-sizing: border-box;
     border-radius: 8px;
-    text-decoration: none;
     font-weight: normal;
     font-size: 16px;
     line-height: 19px;

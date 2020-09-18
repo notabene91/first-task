@@ -11,11 +11,11 @@
 </template>
 
 <script>
-import SliderMenu from '../components/SliderMenu'
-import SliderTitles from '../components/SliderTitles'
-import Catalog from '../components/Catalog'
-import OrderMore from '../components/OrderMore'
-import Footer from '../components/Footer'
+import SliderMenu from '../../components/SliderMenu'
+import SliderTitles from '../../components/SliderTitles'
+import Catalog from '../../components/Catalog'
+import OrderMore from '../../components/OrderMore'
+import Footer from '../../components/Footer'
 export default {
   components: {
     'slider-menu': SliderMenu,
