@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 
 import LOAD_SETTINGS from '../api/loadSettings'
 import LOAD_CART from '../api/loadCart'
@@ -27,11 +28,16 @@ export const mutations = {
 
 export const actions = {
   async fetchSettings (state) {
-    const res = await LOAD_SETTINGS.get()
-    return state.commit('setState', {
-      name: 'logo',
-      value: res.data.details.logo
-    })
+    try {
+      const res = await LOAD_SETTINGS.get()
+      return state.commit('setState', {
+        name: 'logo',
+        value: res.data.details.logo
+      })
+    } catch (err) {
+      console.log(err)
+      throw new Error('Внутреняя ошибка сервера, сообщите администратору')
+    }
   },
   fetchCart (state) {
     return LOAD_CART.get()
@@ -40,6 +46,8 @@ export const actions = {
           name: 'cart',
           value: res.data.details
         })
+      }).catch((err) => {
+        console.log(err)
       })
   }
 }

@@ -31,7 +31,7 @@
           @click="toggleCityPopup"
         >
       </label>
-      <nuxt-link to="/">
+      <nuxt-link class="header__link" to="/">
         <img v-if="!isDropdownShown" :src="logo" alt="Логотип." class="logo header__logo">
       </nuxt-link>
       <nav>
@@ -80,6 +80,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   padding: 0 85px;
+  outline: none;
 }
 nav {
   display: flex;
@@ -125,6 +126,9 @@ nav {
 }
 .header__checkbox {
   display: none;
+}
+.header__link:focus {
+  outline: none;
 }
 @media screen and (max-width: 1970px) {
   .header__navigation {

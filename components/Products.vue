@@ -46,14 +46,6 @@ export default {
     align-items: center;
     padding: 66px 85px 18px;
   }
-  .products__container {
-    display: grid;
-    width: 100%;
-    grid-template-columns: repeat(auto-fill, 326px);
-    grid-gap: 30px;
-    margin-bottom: 30px;
-    justify-content: center;
-  }
   .products__title {
     font-weight: 500;
     font-size: 72px;

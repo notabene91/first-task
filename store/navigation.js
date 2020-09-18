@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 
 import LOAD_PAGES from '../api/loadPages'
 
@@ -19,6 +20,9 @@ export const actions = {
           name: 'navItems',
           value: res.data.details.data
         })
+      })
+      .catch((err) => {
+        console.log(err)
       })
   }
 }

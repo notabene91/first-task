@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 
 import LOAD_MENU from '../api/loadMenu'
 
@@ -23,6 +24,9 @@ export const actions = {
           name: 'menu',
           value: res.data.details.data
         })
+      })
+      .catch((err) => {
+        console.log(err)
       })
   }
 }

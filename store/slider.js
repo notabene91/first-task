@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 
 import LOAD_SLIDES from '../api/loadSlides'
 
@@ -19,6 +20,9 @@ export const actions = {
           name: 'slides',
           value: res.data.details.data
         })
+      })
+      .catch((err) => {
+        console.log(err)
       })
   }
 }
