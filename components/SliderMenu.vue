@@ -1,7 +1,12 @@
 <template>
   <div v-swiper:mySwiper="swiperOptions" class="slider">
     <div class="swiper-wrapper">
-      <div v-for="food in menu" :key="food.cat_id" class="swiper-slide">
+      <div
+        v-for="food in menu"
+        :key="food.cat_id"
+        class="swiper-slide"
+        @click="goToCatalog(food.category_code, food.cat_id)"
+      >
         <img :src="food.photo_url" :alt="food.name" class="slider__image">
         <p class="slider__text">
           {{ food.category_name }}
@@ -48,6 +53,11 @@ export default {
   computed: {
     menu () {
       return this.$store.getters['menu/getMenu']
+    }
+  },
+  methods: {
+    goToCatalog (id, num) {
+      this.$router.push({ path: `/catalog/${id}`, query: { num } })
     }
   }
 }
