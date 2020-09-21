@@ -31,7 +31,7 @@
           @click="toggleCityPopup"
         >
       </label>
-      <nuxt-link class="header__link" to="/">
+      <nuxt-link to="/" class="header__link">
         <img v-if="!isDropdownShown" :src="logo" alt="Логотип." class="logo header__logo">
       </nuxt-link>
       <nav>
@@ -176,7 +176,12 @@ nav {
     transform: translate(50%, 0);
   }
   .header__wrapper {
+    position: relative;
     width: 50%;
+  }
+  .header__link {
+    position: absolute;
+    right: 0;
   }
   .header__navigation {
     display: none;

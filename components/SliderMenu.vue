@@ -20,6 +20,8 @@
 
 <script>
 export default {
+  // eslint-disable-next-line vue/require-prop-types
+  props: ['start'],
   async fetch () {
     await this.$store.dispatch('menu/fetchMenu')
   },
@@ -29,7 +31,7 @@ export default {
         slidesPerView: 14,
         spaceBetween: 20,
         centeredSlides: true,
-        initialSlide: 3,
+        initialSlide: this.start,
         navigation: {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev'

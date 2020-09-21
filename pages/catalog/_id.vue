@@ -1,7 +1,7 @@
 <template>
   <div class="body">
     <div class="main">
-      <slider-menu />
+      <slider-menu :start="startSlide()" />
       <slider-titles :start="startSlide()" />
       <catalog :cards="cards" />
       <order-more />

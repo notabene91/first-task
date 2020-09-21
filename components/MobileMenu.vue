@@ -25,7 +25,6 @@ export default {
 <style scoped>
   .mobile-menu {
     display: grid;
-    border-top: 1px solid #383838;
     padding-top: 20px;
   }
   .mobile-menu__item {

@@ -45,6 +45,7 @@ export default {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
+    border-bottom: 1px solid #383838;
   }
   .button__btn {
     font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
