@@ -1,8 +1,8 @@
 <template>
   <div class="body">
     <div class="main">
-      <slider-menu :start="startSlide()" />
-      <slider-titles :start="startSlide()" />
+      <slider-menu :start="index" />
+      <slider-titles :start="index" />
       <catalog :cards="cards" />
       <order-more />
       <my-footer />
@@ -26,19 +26,32 @@ export default {
   },
   async fetch () {
     await this.$store.dispatch('menu/fetchMenu')
-    await this.$store.dispatch('card/fetchCardInfo', this.$route.query.num)
+    await this.$store.dispatch('card/fetchCardInfo', this.currentCategory)
   },
   computed: {
     menu () {
       return this.$store.getters['menu/getMenu']
     },
+    currentCategory () {
+      return this.$store.getters['menu/getCurrentCat']
+    },
     cards () {
       return this.$store.getters['card/getCards']
+    },
+    index () {
+      return this.$store.getters['menu/getIndex']
     }
   },
   methods: {
-    startSlide () {
-      return this.menu.findIndex(el => el.category_code === this.$route.params.id)
+    setCurrentCat (id) {
+      this.$store.commit('menu/setCurrentCat', id)
+    },
+    setIndex (name) {
+      this.$store.commit('menu/setIndex', this.menus
+        .findIndex((menu) => {
+          return name === menu.cat_id
+        })
+      )
     }
   }
 }

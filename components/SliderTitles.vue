@@ -1,14 +1,20 @@
 <template>
-  <div v-swiper:mySwiper="swiperOptions" class="slider">
+  <div
+    v-swiper:mySwiper="swiperOptions"
+    class="slider"
+    @slideNextTransitionStart="incrIndex()"
+    @slideNextTransitionEnd="setCurrentCat(menus[index].cat_id), goToCatalog(menus[index].category_code)"
+    @slidePrevTransitionStart="decrIndex()"
+    @slidePrevTransitionEnd="setCurrentCat(menus[index].cat_id), goToCatalog(menus[index].category_code)"
+  >
     <div class="swiper-wrapper">
       <div
-        v-for="food in menu"
-        :key="food.cat_id"
+        v-for="menu in menus"
+        :key="menu.cat_id"
         class="swiper-slide"
-        @click="goToCatalog(food.category_code, food.cat_id)"
       >
         <p class="slider__text">
-          {{ food.category_name }}
+          {{ menu.category_name }}
         </p>
       </div>
     </div>
@@ -38,13 +44,38 @@ export default {
     }
   },
   computed: {
-    menu () {
+    menus () {
       return this.$store.getters['menu/getMenu']
+    },
+    currentCat () {
+      return this.$store.getters['menu/getCurrentCat']
+    },
+    index () {
+      return this.$store.getters['menu/getIndex']
+    },
+    currentName () {
+      return this.$store.getters['menu/getCurrentName']
     }
   },
   methods: {
-    goToCatalog (id, num) {
-      this.$router.push({ path: `/catalog/${id}`, query: { num } })
+    goToCatalog (id) {
+      this.$router.push({ path: `/catalog/${id}` })
+    },
+    setCurrentCat (id) {
+      this.$store.commit('menu/setCurrentCat', id)
+    },
+    setIndex (id) {
+      this.$store.commit('menu/setIndex', this.menus
+        .findIndex((menu) => {
+          return menu.category_code === this.$route.params.id
+        })
+      )
+    },
+    incrIndex () {
+      this.$store.commit('menu/increment')
+    },
+    decrIndex () {
+      this.$store.commit('menu/decrement')
     }
   }
 }
@@ -67,6 +98,7 @@ export default {
     padding-bottom: 5px;
     text-align: center;
     color: #DEDEDE;
+    z-index: 10;
   }
   .swiper-slide-active {
     font-weight: 500;

@@ -4,7 +4,9 @@ import LOAD_MENU from '../api/loadMenu'
 
 export const state = () => ({
   menu: [],
-  menuShown: false
+  menuShown: false,
+  currentCat: '',
+  index: ''
 })
 
 export const mutations = {
@@ -13,6 +15,18 @@ export const mutations = {
   },
   toggleMobileMenu (state) {
     return (state.menuShown = !state.menuShown)
+  },
+  setCurrentCat (state, value) {
+    return (state.currentCat = value)
+  },
+  setIndex (state, value) {
+    return (state.index = value)
+  },
+  increment (state) {
+    return (state.index++)
+  },
+  decrement (state) {
+    return (state.index--)
   }
 }
 
@@ -37,5 +51,11 @@ export const getters = {
   },
   getMenuShown (state) {
     return state.menuShown
+  },
+  getCurrentCat (state) {
+    return state.currentCat
+  },
+  getIndex (state) {
+    return state.index
   }
 }

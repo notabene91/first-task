@@ -49,7 +49,7 @@ export default {
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
-    padding: 0 24px 4px;
+    padding: 0 24px 8px;
   }
   .card__title {
     min-height: 42px;

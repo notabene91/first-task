@@ -6,7 +6,7 @@
         {{ menu.category_name }}
       </h2>
       <!-- <catalog /> -->
-      <button class="button products__button" @click="goToCatalog(menu.category_code, menu.cat_id)">
+      <button class="button products__button" @click="goToCatalog(menu.category_code), setCurrentCat(menu.cat_id), setIndex(menu.cat_id)">
         Перейти в каталог
       </button>
     </div>
@@ -29,7 +29,17 @@ export default {
   },
   methods: {
     goToCatalog (id, num) {
-      this.$router.push({ path: `/catalog/${id}`, query: { num } })
+      this.$router.push({ path: `/catalog/${id}` })
+    },
+    setCurrentCat (id) {
+      this.$store.commit('menu/setCurrentCat', id)
+    },
+    setIndex (name) {
+      this.$store.commit('menu/setIndex', this.menus
+        .findIndex((menu) => {
+          return name === menu.cat_id
+        })
+      )
     }
   }
 }
