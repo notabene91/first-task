@@ -5,7 +5,7 @@
       <h2 class="products__title">
         {{ menu.category_name }}
       </h2>
-      <!-- <catalog /> -->
+      <!-- <catalog :cards="cards" /> -->
       <button class="button products__button" @click="goToCatalog(menu.category_code), setCurrentCat(menu.cat_id), setIndex(menu.cat_id)">
         Перейти в каталог
       </button>
@@ -19,16 +19,13 @@ export default {
   components: {
     // catalog: Catalog
   },
-  async fetch () {
-    await this.$store.dispatch('menu/fetchMenu')
-  },
   computed: {
     menus () {
       return this.$store.getters['menu/getMenu']
     }
   },
   methods: {
-    goToCatalog (id, num) {
+    goToCatalog (id) {
       this.$router.push({ path: `/catalog/${id}` })
     },
     setCurrentCat (id) {
@@ -58,7 +55,6 @@ export default {
     line-height: 85px;
     text-align: center;
     color: #4E5460;
-    margin-bottom: 43px;
   }
   .products__button {
     position: relative;
@@ -76,6 +72,7 @@ export default {
     line-height: 19px;
     text-align: center;
     color: #4E5460;
+    margin-top: 10px;
   }
   .products__button::after {
     content: '';
@@ -96,6 +93,10 @@ export default {
     height: 14px;
   }
   .products__button:hover {
+    background: #4E5460;
+    color: #fff;
+  }
+  .products__button:focus {
     background: #4E5460;
     color: #fff;
   }

@@ -1,7 +1,7 @@
 <template>
   <div class="catalog">
     <card
-      v-for="card in cards.value"
+      v-for="card in cards"
       :key="card.item_id"
       :photo="card.photo"
       :name="card.item_name"
@@ -14,12 +14,11 @@
 
 <script>
 export default {
+  // eslint-disable-next-line vue/require-prop-types
+  props: ['cards'],
   computed: {
     menu () {
       return this.$store.getters['menu/getMenu']
-    },
-    cards () {
-      return this.$store.getters['card/getCards']
     }
   }
 }

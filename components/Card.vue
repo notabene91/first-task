@@ -104,6 +104,10 @@ export default {
     background-color: #83CD26;
     color: #fff;
   }
+  .card__button:focus {
+    background-color: #83CD26;
+    color: #fff;
+  }
   .card__button:active {
     background-color: #68B00C;
     color: #fff;

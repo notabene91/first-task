@@ -32,7 +32,7 @@
         >
       </label>
       <nuxt-link to="/" class="header__link">
-        <img v-if="!isDropdownShown" :src="logo" alt="Логотип." class="logo header__logo">
+        <img v-if="!isDropdownShown" :src="settings.logo" alt="Логотип." class="logo header__logo">
       </nuxt-link>
       <nav>
         <navigation class="header__navigation" />
@@ -51,11 +51,11 @@ export default {
     info: Info
   },
   async fetch () {
-    await this.$store.dispatch('header/fetchSettings')
+    await this.$store.dispatch('settings/fetchSettings')
   },
   computed: {
-    logo () {
-      return this.$store.getters['header/getLogo']
+    settings () {
+      return this.$store.getters['settings/getSettings']
     },
     isDropdownShown () {
       return this.$store.getters['header/getDropdown']

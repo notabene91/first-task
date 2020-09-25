@@ -67,15 +67,6 @@ export default {
     settings () {
       return this.$store.getters['settings/getSettings']
     }
-  },
-  methods: {
-    startSlide () {
-      return this.menu.findIndex(el => el.category_code === this.$route.params.id)
-    },
-    bla () {
-      // eslint-disable-next-line no-console
-      console.log(this.$route)
-    }
   }
 }
 </script>

@@ -1,7 +1,6 @@
 import { methods } from '@/api/'
-
 export const state = () => ({
-  navItems: []
+  cart: ''
 })
 
 export const mutations = {
@@ -11,17 +10,17 @@ export const mutations = {
 }
 
 export const actions = {
-  async fetchNavItems ({ commit }) {
-    const res = await methods.getNavigation()
+  async fetchCart ({ commit }) {
+    const res = await methods.getCart()
     commit('setState', {
-      name: 'navItems',
+      name: 'cart',
       value: res.data
     })
   }
 }
 
 export const getters = {
-  getNavItems (state) {
-    return state.navItems
+  getCart (state) {
+    return state.cart
   }
 }

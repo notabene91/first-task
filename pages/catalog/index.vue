@@ -2,9 +2,6 @@
   <div class="body">
     <div class="main">
       <slider-menu />
-      <slider-titles />
-      <catalog />
-      <order-more />
       <my-footer />
     </div>
   </div>
@@ -12,16 +9,10 @@
 
 <script>
 import SliderMenu from '../../components/SliderMenu'
-import SliderTitles from '../../components/SliderTitles'
-import Catalog from '../../components/Catalog'
-import OrderMore from '../../components/OrderMore'
 import Footer from '../../components/Footer'
 export default {
   components: {
     'slider-menu': SliderMenu,
-    'slider-titles': SliderTitles,
-    catalog: Catalog,
-    'order-more': OrderMore,
     'my-footer': Footer
   }
 }

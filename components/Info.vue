@@ -5,7 +5,7 @@
     <nuxt-link class="link info__link" to="/">
       <img v-if="!isDropdownShown" src="../static/basket.svg" alt="Корзина" class="info__card">
       <span v-if="isDropdownShown" class="info__price_mobile">{{ cart | zero }} ₽</span>
-      <span class="info__price">{{ cart | zero }} ₽</span>
+      <span class="info__price">{{ cart.details | zero }} ₽</span>
     </nuxt-link>
   </div>
 </template>
@@ -20,11 +20,11 @@ export default {
     }
   },
   async fetch () {
-    await this.$store.dispatch('header/fetchCart')
+    await this.$store.dispatch('cart/fetchCart')
   },
   computed: {
     cart () {
-      return this.$store.getters['header/getCart']
+      return this.$store.getters['cart/getCart']
     },
     isDropdownShown () {
       return this.$store.getters['header/getDropdown']

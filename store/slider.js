@@ -1,6 +1,4 @@
-/* eslint-disable no-console */
-
-import LOAD_SLIDES from '../api/loadSlides'
+import { methods } from '@/api/'
 
 export const state = () => ({
   slides: []
@@ -13,17 +11,12 @@ export const mutations = {
 }
 
 export const actions = {
-  fetchSlides (state) {
-    return LOAD_SLIDES.get()
-      .then((res) => {
-        return state.commit('setState', {
-          name: 'slides',
-          value: res.data.details.data
-        })
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+  async fetchSlides ({ commit }) {
+    const res = await methods.getSlides()
+    commit('setState', {
+      name: 'slides',
+      value: res.data
+    })
   }
 }
 

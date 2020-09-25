@@ -2,7 +2,7 @@
   <div class="body">
     <div class="main">
       <slider-banners />
-      <slider-menu />
+      <slider-menu :start="centerSlide" />
       <buttons />
       <mobile-menu v-if="isMenuShown" />
       <products />
@@ -27,6 +27,9 @@ export default {
     products: Products,
     'my-footer': Footer
   },
+  async fetch () {
+    await this.$store.dispatch('menu/fetchMenu')
+  },
   data () {
     return {
       swiperOptions: {
@@ -50,6 +53,12 @@ export default {
   computed: {
     isMenuShown () {
       return this.$store.getters['menu/getMenuShown']
+    },
+    menus () {
+      return this.$store.getters['menu/getMenu']
+    },
+    centerSlide () {
+      return Math.round(this.menus.length / 2)
     }
   }
 }
@@ -67,7 +76,6 @@ export default {
 }
 .button:focus  {
   outline: none;
-  border: 1px solid coral;
 }
 .link:focus{
   outline: none;

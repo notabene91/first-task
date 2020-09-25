@@ -1,6 +1,4 @@
-/* eslint-disable no-console */
-
-import LOAD_SETTINGS from '../api/loadSettings'
+import { methods } from '@/api/'
 
 export const state = () => ({
   settings: {}
@@ -13,17 +11,12 @@ export const mutations = {
 }
 
 export const actions = {
-  async fetchSettings (state) {
-    try {
-      const res = await LOAD_SETTINGS.get()
-      return state.commit('setState', {
-        name: 'settings',
-        value: res.data.details
-      })
-    } catch (err) {
-      console.log(err)
-      throw new Error('Внутреняя ошибка сервера, сообщите администратору')
-    }
+  async fetchSettings ({ commit }) {
+    const res = await methods.getSettings()
+    commit('setState', {
+      name: 'settings',
+      value: res.details
+    })
   }
 }
 

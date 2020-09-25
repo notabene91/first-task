@@ -1,6 +1,4 @@
-/* eslint-disable no-console */
-
-import LOAD_MENU from '../api/loadMenu'
+import { methods } from '@/api/'
 
 export const state = () => ({
   menu: [],
@@ -29,19 +27,13 @@ export const mutations = {
     return (state.index--)
   }
 }
-
 export const actions = {
-  fetchMenu (state) {
-    return LOAD_MENU.get()
-      .then((res) => {
-        return state.commit('setState', {
-          name: 'menu',
-          value: res.data.details.data
-        })
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+  async fetchMenu ({ commit }) {
+    const res = await methods.getMenuCategories()
+    commit('setState', {
+      name: 'menu',
+      value: res.data
+    })
   }
 }
 

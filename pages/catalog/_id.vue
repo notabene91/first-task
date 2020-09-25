@@ -3,7 +3,7 @@
     <div class="main">
       <slider-menu :start="index" />
       <slider-titles :start="index" />
-      <catalog :cards="cards" />
+      <catalog :cards="cards.value" />
       <order-more />
       <my-footer />
     </div>
@@ -41,18 +41,6 @@ export default {
     index () {
       return this.$store.getters['menu/getIndex']
     }
-  },
-  methods: {
-    setCurrentCat (id) {
-      this.$store.commit('menu/setCurrentCat', id)
-    },
-    setIndex (name) {
-      this.$store.commit('menu/setIndex', this.menus
-        .findIndex((menu) => {
-          return name === menu.cat_id
-        })
-      )
-    }
   }
 }
 </script>
@@ -70,7 +58,6 @@ export default {
   }
   .button:focus  {
     outline: none;
-    border: 1px solid coral;
   }
   .link:focus{
     outline: none;
