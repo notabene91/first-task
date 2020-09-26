@@ -46,12 +46,11 @@ const getCart = () => {
 }
 
 // eslint-disable-next-line camelcase
-const getItemsByCategory = ({ cat_id }) => {
+const getItemsByCategory = (cat_id) => {
   return axios
-    .get(`${constants.URL}/loadItemByCategory/`,
-      {
-        params: { ...params, cat_id }
-      })
+    .get(`${constants.URL}/loadItemByCategory/`, {
+      params: { ...params, cat_id }
+    })
     .then(({ data: { details: { data } } }) => ({ data }))
 }
 

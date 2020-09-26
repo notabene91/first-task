@@ -5,7 +5,7 @@
       <h2 class="products__title">
         {{ menu.category_name }}
       </h2>
-      <!-- <catalog :cards="cards" /> -->
+      <catalog :cards="cards[menu.cat_id]" />
       <button class="button products__button" @click="goToCatalog(menu.category_code), setCurrentCat(menu.cat_id), setIndex(menu.cat_id)">
         Перейти в каталог
       </button>
@@ -14,14 +14,17 @@
 </template>
 
 <script>
-// import Catalog from '../components/Catalog'
+import Catalog from '../components/Catalog'
 export default {
   components: {
-    // catalog: Catalog
+    catalog: Catalog
   },
   computed: {
     menus () {
       return this.$store.getters['menu/getMenu']
+    },
+    cards () {
+      return this.$store.getters['card/getCategoriesWithCards']
     }
   },
   methods: {
@@ -72,7 +75,6 @@ export default {
     line-height: 19px;
     text-align: center;
     color: #4E5460;
-    margin-top: 10px;
   }
   .products__button::after {
     content: '';

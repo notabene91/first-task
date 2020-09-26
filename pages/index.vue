@@ -29,6 +29,9 @@ export default {
   },
   async fetch () {
     await this.$store.dispatch('menu/fetchMenu')
+    await this.menus.forEach((menu) => {
+      this.$store.dispatch('card/fetchCategoryCards', menu.cat_id)
+    })
   },
   data () {
     return {

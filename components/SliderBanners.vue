@@ -53,8 +53,7 @@ export default {
   .slider__image {
     height: 100%;
     width: 100%;
-    object-fit: cover;
-    object-position: left;
+    object-fit: contain;
   }
   .swiper-pagination {
     bottom: 20px;
@@ -77,9 +76,6 @@ export default {
   @media screen and (max-width: 1550px) {
     .swiper-slide {
       height: 100%;
-    }
-    .slider__image {
-      object-fit: contain;
     }
   }
   @media screen and (max-width: 768px) {
