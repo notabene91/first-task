@@ -3,7 +3,7 @@
     <div class="main">
       <slider-menu :start="index" />
       <slider-titles :start="index" />
-      <catalog :cards="cards.value" />
+      <catalog :cards="cards" />
       <order-more />
       <my-footer />
     </div>
