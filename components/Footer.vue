@@ -2,7 +2,7 @@
   <div class="footer" @click="bla()">
     <div class="footer__top">
       <nuxt-link class="header__link" to="/">
-        <img :src="logo" alt="Логотип." class="logo footer__logo">
+        <img :src="settings.logo" alt="Логотип." class="logo footer__logo">
       </nuxt-link>
       <nav>
         <navigation class="footer__navigation" />
@@ -61,9 +61,6 @@ export default {
     await this.$store.dispatch('settings/fetchSettings')
   },
   computed: {
-    logo () {
-      return this.$store.getters['header/getLogo']
-    },
     settings () {
       return this.$store.getters['settings/getSettings']
     }

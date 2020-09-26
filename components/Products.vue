@@ -107,9 +107,14 @@ export default {
     color: #fff;
   }
 
-   @media screen and (max-width: 1570px) {
+  @media screen and (max-width: 1570px) {
     .products {
       padding: 42px 40px 18px;
+    }
+  }
+   @media screen and (max-width: 1125px) {
+    .products {
+      padding: 42px 0 18px;
     }
   }
   @media screen and (max-width: 768px) {
