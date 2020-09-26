@@ -78,9 +78,6 @@ export default {
     .swiper-slide {
       height: 100%;
     }
-    .slider__image {
-      object-fit: contain;
-    }
   }
   @media screen and (max-width: 768px) {
     .swiper-slide {
