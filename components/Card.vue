@@ -9,10 +9,10 @@
         {{ description }}
       </p>
       <p class="card__price">
-        {{ price }}
+        {{ formatted }}
       </p>
     </div>
-    <button class="button card__button">
+    <button class="button card__button" @click="addon ? openDetails() : addItemToCart()">
       {{ addon ? 'Выбрать' : 'Добавить в корзину' }}
     </button>
   </div>
@@ -22,7 +22,20 @@
 
 export default {
   // eslint-disable-next-line vue/require-prop-types
-  props: ['photo', 'name', 'description', 'price', 'addon']
+  props: ['card', 'photo', 'name', 'description', 'formatted', 'price', 'addon', 'item', 'cat'],
+  methods: {
+    addItemToCart () {
+      this.$store.dispatch('card/addItemToCart', {
+        category_id: this.cat,
+        item_id: this.item,
+        price: this.price
+      })
+    },
+    openDetails () {
+      this.$store.commit('card/setDetailsData', this.card)
+      this.$store.commit('card/toggleDetails')
+    }
+  }
 }
 </script>
 

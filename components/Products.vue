@@ -5,7 +5,7 @@
       <h2 class="products__title">
         {{ menu.category_name }}
       </h2>
-      <catalog :cards="cards[menu.cat_id]" />
+      <catalog :cards="cards[menu.cat_id]" :cat="menu.cat_id" />
       <button class="button products__button" @click="goToCatalog(menu.category_code), setCurrentCat(menu.cat_id), setIndex(menu.cat_id)">
         Перейти в каталог
       </button>

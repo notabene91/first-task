@@ -10,6 +10,9 @@ export default {
     },
     isShownCity () {
       return this.$store.getters['header/getPopupCity']
+    },
+    isShownDetails () {
+      return this.$store.getters['card/getDetails']
     }
   },
   methods: {
@@ -19,8 +22,17 @@ export default {
     toggleProfilePopup () {
       this.$store.commit('header/toggleProfilePopup')
     },
+    toggleDetailsPopup () {
+      this.$store.commit('card/toggleDetails')
+    },
     overlayClick () {
-      this.isShownCity ? this.toggleCityPopup() : this.toggleProfilePopup()
+      if (this.isShownCity) {
+        this.toggleCityPopup()
+      } else if (this.isShownProfile) {
+        this.toggleProfilePopup()
+      } else if (this.isShownDetails) {
+        this.toggleDetailsPopup()
+      }
     }
   }
 }

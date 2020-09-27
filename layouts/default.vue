@@ -4,7 +4,8 @@
     <my-dropdown v-if="isDropdownShown" />
     <popup-profile v-if="isShownProfile" />
     <popup-city v-if="isShownCity" />
-    <overlay v-if="isShownCity || isShownProfile" />
+    <popup-details v-if="isShownDetails" />
+    <overlay v-if="isShownCity || isShownProfile || isShownDetails" />
     <Nuxt />
   </div>
 </template>
@@ -13,6 +14,7 @@ import Header from '../components/Header'
 import Dropdown from '../components/Dropdown'
 import PopupProfile from '../components/PopupProfile'
 import PopupCity from '../components/PopupCity'
+import PopupDetails from '../components/PopupDetails'
 import Overlay from '../components/Overlay'
 export default {
   components: {
@@ -20,7 +22,8 @@ export default {
     'my-dropdown': Dropdown,
     overlay: Overlay,
     'popup-profile': PopupProfile,
-    'popup-city': PopupCity
+    'popup-city': PopupCity,
+    'popup-details': PopupDetails
   },
   async fetch () {
     await this.$store.dispatch('settings/fetchSettings')
@@ -37,6 +40,9 @@ export default {
     },
     isDropdownShown () {
       return this.$store.getters['header/getDropdown']
+    },
+    isShownDetails () {
+      return this.$store.getters['card/getDetails']
     }
   },
   head () {

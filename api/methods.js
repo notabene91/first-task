@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import axios from 'axios'
 import { constants } from './index'
 
@@ -45,7 +46,6 @@ const getCart = () => {
     .then(({ data }) => ({ data }))
 }
 
-// eslint-disable-next-line camelcase
 const getItemsByCategory = (cat_id) => {
   return axios
     .get(`${constants.URL}/loadItemByCategory/`, {
@@ -54,11 +54,34 @@ const getItemsByCategory = (cat_id) => {
     .then(({ data: { details: { data } } }) => ({ data }))
 }
 
+const addItemToCart = ({
+  category_id,
+  item_id,
+  price,
+  qty
+}) => {
+  return axios
+    .post(`${constants.URL}/addToCart/`,
+    `category_id=${category_id}&item_id=${item_id}&price=${price}&two_flavors=0&notes=""&qty=${qty}`,
+    {
+      params: { ...params }
+    })
+    .then(({ data: { details: { data } } }) => ({ data }))
+}
+
+const clearCart = () => {
+  axios.get(`${constants.URL}/clearCart/`, {
+    params: { ...params }
+  })
+}
+
 export {
   getSlides,
   getNavigation,
   getMenuCategories,
   getSettings,
   getCart,
-  getItemsByCategory
+  getItemsByCategory,
+  addItemToCart,
+  clearCart
 }

@@ -16,6 +16,9 @@ export const actions = {
       name: 'cart',
       value: res.data
     })
+  },
+  async clearCart () {
+    await methods.clearCart()
   }
 }
 

@@ -1,8 +1,11 @@
+/* eslint-disable camelcase */
 import { methods } from '@/api/'
 
 export const state = () => ({
   cards: [],
-  categoriesWithCards: {}
+  categoriesWithCards: {},
+  details: false,
+  detailsData: {}
 })
 
 export const mutations = {
@@ -11,6 +14,12 @@ export const mutations = {
   },
   setCat (state, { key, value }) {
     return (state.categoriesWithCards[key] = value)
+  },
+  toggleDetails (state) {
+    return (state.details = !state.details)
+  },
+  setDetailsData (state, value) {
+    return (state.detailsData = value)
   }
 }
 
@@ -25,6 +34,16 @@ export const actions = {
       key: id,
       value: res.data
     })
+  },
+  async addItemToCart ({ dispatch },
+    { category_id, item_id, price, qty = 1 }) {
+    const res = await methods.addItemToCart({
+      category_id,
+      item_id,
+      price,
+      qty
+    })
+    res === 1 && dispatch('cart/fetchCart')
   }
 }
 
@@ -34,5 +53,8 @@ export const getters = {
   },
   getCategoriesWithCards (state) {
     return state.categoriesWithCards
+  },
+  getDetails (state) {
+    return state.details
   }
 }

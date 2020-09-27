@@ -1,6 +1,5 @@
 
 export const state = () => ({
-  cart: '',
   popupCityShown: false,
   popupProfileShown: false,
   dropdownShown: false
@@ -22,9 +21,6 @@ export const mutations = {
 }
 
 export const getters = {
-  getCart (state) {
-    return state.cart
-  },
   getPopupCity (state) {
     return state.popupCityShown
   },

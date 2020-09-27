@@ -5,20 +5,13 @@
     <nuxt-link class="link info__link" to="/">
       <img v-if="!isDropdownShown" src="../static/basket.svg" alt="Корзина" class="info__card">
       <span v-if="isDropdownShown" class="info__price_mobile">{{ cart | zero }} ₽</span>
-      <span class="info__price">{{ cart.details | zero }} ₽</span>
+      <span class="info__price" @click="clearCart()">{{ sum }} {{ curr }}</span>
     </nuxt-link>
   </div>
 </template>
 
 <script>
 export default {
-  filters: {
-    zero (value) {
-      if (value === '') {
-        return '0 '
-      }
-    }
-  },
   async fetch () {
     await this.$store.dispatch('cart/fetchCart')
   },
@@ -28,6 +21,20 @@ export default {
     },
     isDropdownShown () {
       return this.$store.getters['header/getDropdown']
+    },
+    sum () {
+      if (this.cart.details !== '') {
+        return this.cart.details.data.total.subtotal
+      } else {
+        return '0 '
+      }
+    },
+    curr () {
+      if (this.cart.details !== '') {
+        return this.cart.details.data.total.curr
+      } else {
+        return '₽'
+      }
     }
   },
   methods: {
@@ -36,6 +43,9 @@ export default {
     },
     toggleProfilePopup () {
       this.$store.commit('header/toggleProfilePopup')
+    },
+    clearCart () {
+      this.$store.dispatch('cart/clearCart')
     }
   }
 }
@@ -62,7 +72,7 @@ export default {
     font-weight: 500;
     font-size: 20px;
     line-height: 24px;
-    margin-left: 20px;
+    margin-left: 12px;
     color:#83CD26;
   }
   .info__price_mobile {
