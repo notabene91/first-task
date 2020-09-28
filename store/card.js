@@ -5,7 +5,8 @@ export const state = () => ({
   cards: [],
   categoriesWithCards: {},
   details: false,
-  detailsData: {}
+  detailsData: {},
+  counter: 1
 })
 
 export const mutations = {
@@ -20,6 +21,12 @@ export const mutations = {
   },
   setDetailsData (state, value) {
     return (state.detailsData = value)
+  },
+  increment: state => state.counter++,
+  decrement: (state) => {
+    if (state.counter > 1) {
+      state.counter--
+    }
   }
 }
 
@@ -56,5 +63,11 @@ export const getters = {
   },
   getDetails (state) {
     return state.details
+  },
+  getDetailsData (state) {
+    return state.detailsData
+  },
+  getCounter (state) {
+    return state.counter
   }
 }
