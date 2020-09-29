@@ -38,7 +38,8 @@ export default {
   plugins: [
     { src: '~/plugins/swiper.js' },
     { src: '~/plugins/ym.js', mode: 'client' },
-    { src: '~plugins/ga.js', mode: 'client' }
+    { src: '~plugins/ga.js', mode: 'client' },
+    { src: '~/plugins/mask.js' }
   ],
   /*
   ** Auto import components

@@ -75,6 +75,39 @@ const clearCart = () => {
   })
 }
 
+const login = (payload) => {
+  return axios
+    .get(`${constants.URL}/login/`, {
+      params: {
+        ...params,
+        ...payload
+      }
+    })
+    .then(({ data }) => ({ data }))
+}
+
+const register = (payload) => {
+  return axios
+    .get(`${constants.URL}/customerRegister/`, {
+      params: {
+        ...params,
+        ...payload
+      }
+    })
+    .then(({ data }) => ({ data }))
+}
+
+const resetPass = (user_email) => {
+  return axios
+    .get(`${constants.URL}/requestForgotPass/`, {
+      params: {
+        ...params,
+        user_email
+      }
+    })
+    .then(({ data }) => ({ data }))
+}
+
 export {
   getSlides,
   getNavigation,
@@ -83,5 +116,8 @@ export {
   getCart,
   getItemsByCategory,
   addItemToCart,
-  clearCart
+  clearCart,
+  login,
+  register,
+  resetPass
 }

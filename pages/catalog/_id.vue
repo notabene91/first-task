@@ -1,7 +1,7 @@
 <template>
   <div class="body">
     <div class="main">
-      <slider-menu :start="index" />
+      <slider-menu :start="centerSlide" />
       <slider-titles :start="index" />
       <catalog :cards="cards" />
       <order-more />
@@ -40,6 +40,9 @@ export default {
     },
     index () {
       return this.$store.getters['menu/getIndex']
+    },
+    centerSlide () {
+      return Math.round(this.menu.length / 2)
     }
   }
 }

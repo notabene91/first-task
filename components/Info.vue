@@ -4,7 +4,7 @@
     <img src="../static/profile.svg" class="info__icon" alt="Войти в профиль." @click="toggleProfilePopup">
     <nuxt-link class="link info__link" to="/">
       <img v-if="!isDropdownShown" src="../static/basket.svg" alt="Корзина" class="info__card">
-      <span v-if="isDropdownShown" class="info__price_mobile">{{ cart | zero }} ₽</span>
+      <span v-if="isDropdownShown" class="info__price_mobile">{{ sum }} {{ curr }}</span>
       <span class="info__price" @click="clearCart()">{{ sum }} {{ curr }}</span>
     </nuxt-link>
   </div>
@@ -13,24 +13,24 @@
 <script>
 export default {
   async fetch () {
-    await this.$store.dispatch('cart/fetchCart')
+    await this.$store.dispatch('card/fetchCart')
   },
   computed: {
     cart () {
-      return this.$store.getters['cart/getCart']
+      return this.$store.getters['card/getCart']
     },
     isDropdownShown () {
       return this.$store.getters['header/getDropdown']
     },
     sum () {
-      if (this.cart.details !== '') {
+      if (this.cart.details.data !== undefined) {
         return this.cart.details.data.total.subtotal
       } else {
         return '0 '
       }
     },
     curr () {
-      if (this.cart.details !== '') {
+      if (this.cart.details.data !== undefined) {
         return this.cart.details.data.total.curr
       } else {
         return '₽'
@@ -45,7 +45,7 @@ export default {
       this.$store.commit('header/toggleProfilePopup')
     },
     clearCart () {
-      this.$store.dispatch('cart/clearCart')
+      this.$store.dispatch('card/clearCart')
     }
   }
 }
